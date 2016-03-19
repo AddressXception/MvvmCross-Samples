@@ -48,8 +48,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IScreen.cs" />
+    <Compile Include="Common\ScreenNames.cs" />
     <Compile Include="FeatureBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
