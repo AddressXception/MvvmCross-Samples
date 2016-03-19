@@ -48,6 +48,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Assert.cs" />
+    <Compile Include="Common\AssertFailedException.cs" />
     <Compile Include="Common\IScreen.cs" />
     <Compile Include="Common\ScreenNames.cs" />
     <Compile Include="FeatureBase.cs" />
