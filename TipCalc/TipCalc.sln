@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipCalc.UITest.Windows", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipCalc.UITest.Xamarin", "TipCalc.UITest.Xamarin\TipCalc.UITest.Xamarin.csproj", "{B8180D1A-089F-462E-BF5B-CA5DD5AD584C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipCalc.UITest.Windows.Generator", "TipCalc.UITest.Windows.Generator\TipCalc.UITest.Windows.Generator.csproj", "{583BF70D-869C-40F7-9C80-A9B9643DE47C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipCalc.UITest.Windows.SpecFlowPlugin", "TipCalc.UITest.Windows.Generator\TipCalc.UITest.Windows.SpecFlowPlugin.csproj", "{583BF70D-869C-40F7-9C80-A9B9643DE47C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
