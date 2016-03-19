@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TipCalc.UITest.Windows.Generator
 {
-    public class Class1
+    public class WindowsCodedUIGeneratorProvider
     {
     }
 }
