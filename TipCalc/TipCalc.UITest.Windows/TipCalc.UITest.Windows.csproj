@@ -75,6 +75,7 @@
     <Compile Include="Common\UIMapBase.cs" />
     <Compile Include="Common\WindowsAppResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\TipCalcScreen.cs" />
     <Compile Include="WindowsApp.cs" />
     <Compile Include="WindowsFeatureBase.cs" />
   </ItemGroup>

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using TipCalc.UITest.Shared;
 using TipCalc.UITest.Shared.Common;
+using TipCalc.UITest.Shared.Screens;
 using TipCalc.UITest.Windows.Common;
+using TipCalc.UITest.Windows.Screens;
 using Xamarin.UITest;
 
 namespace TipCalc.UITest.Windows
@@ -46,7 +49,17 @@ namespace TipCalc.UITest.Windows
 
         protected override void RegisterScreens()
         {
-            //todo
+            try
+            {
+                FeatureContext.Current.Get<ITipCalcScreen>(ScreenNames.TipCalc);
+                return;
+            }
+            catch (KeyNotFoundException)
+            {
+                //Keys don't exist so continue
+            }
+
+            FeatureContext.Current.Add(ScreenNames.TipCalc, new TipCalcScreen());
         }
 
         [TestInitialize]

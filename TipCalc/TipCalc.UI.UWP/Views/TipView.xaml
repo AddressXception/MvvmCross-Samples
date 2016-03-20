@@ -11,7 +11,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="12,0,12,0">
             <TextBlock Text="SubTotal" />
-            <TextBox Text="{Binding SubTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox x:Name="SubTotal_TextBox" Text="{Binding SubTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Text="Generosity" />
             <Slider Value="{Binding Generosity,Mode=TwoWay}" 
                 SmallChange="1" 
