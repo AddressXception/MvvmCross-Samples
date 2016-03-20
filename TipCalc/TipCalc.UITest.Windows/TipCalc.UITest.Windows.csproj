@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="AppInitializer.cs" />
     <Compile Include="CodedUITest1.cs" />
+    <Compile Include="Common\TestExtensions.cs" />
+    <Compile Include="Common\UIMapBase.cs" />
+    <Compile Include="Common\WindowsAppResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsApp.cs" />
   </ItemGroup>

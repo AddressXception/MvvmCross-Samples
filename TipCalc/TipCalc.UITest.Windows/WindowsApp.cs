@@ -4,13 +4,51 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UITest.Extension;
+using Microsoft.VisualStudio.TestTools.UITest.Input;
+using Microsoft.VisualStudio.TestTools.UITesting;
+using Microsoft.VisualStudio.TestTools.UITesting.WindowsRuntimeControls;
+using TipCalc.UITest.Windows.Common;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
 namespace TipCalc.UITest.Windows
 {
-    public class WindowsApp : IApp
+    /// <summary>
+    /// Windows implementation of Xamarin's IApp interface based on the following gesture examples:
+    /// http://blogs.msdn.com/b/visualstudioalm/archive/2013/08/17/coded-ui-test-gesture-support-in-visual-studio-2013.aspx
+    /// </summary>
+    public class WindowsApp : IApp, IDisposable
     {
+        private XamlWindow _window;
+        private Rectangle _windowBounds;
+
+        private readonly Dictionary<Type, UIMapBase> _screenDictionary;
+
+        public string AppId { get; set; }
+
+        internal IApp StartApp()
+        {
+            try
+            {
+                _window = XamlWindow.Launch(AppId);
+                return this;
+            }
+            catch (UITestControlNotFoundException)
+            {
+                Console.WriteLine(
+                    "The Test Framework could not get a handle on the application. " +
+                    "Try re-running the tests.");
+                throw;
+            }
+        }
+
+        public void Close()
+        {
+            Keyboard.SendKeys(_window, "{F4}", ModifierKeys.Alt);
+            Dispose();
+        }
+
         public AppResult[] Query(Func<AppQuery, AppQuery> query = null)
         {
             throw new NotImplementedException();
@@ -18,7 +56,20 @@ namespace TipCalc.UITest.Windows
 
         public AppResult[] Query(string marked)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var control = _screenDictionary
+                    .FindControl(_window.FriendlyName, () => marked);
+                return new AppResult[]
+                {
+                    new WindowsAppResult(control)
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
 
         public AppWebResult[] Query(Func<AppQuery, AppWebQuery> query)
@@ -58,7 +109,9 @@ namespace TipCalc.UITest.Windows
 
         public void EnterText(string marked, string text)
         {
-            throw new NotImplementedException();
+            var control = _screenDictionary
+                .FindControl(_window.FriendlyName, () => marked);
+            Keyboard.SendKeys(control, text);
         }
 
         public void EnterText(Func<AppQuery, AppWebQuery> query, string text)
@@ -404,5 +457,33 @@ namespace TipCalc.UITest.Windows
         public AppPrintHelper Print { get; }
         public IDevice Device { get; }
         public ITestServer TestServer { get; }
+
+        #region IDisposable
+
+        private bool _disposed;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        public virtual void Dispose(bool disposing)
+        {
+            if (_disposed) return;
+
+            if (disposing)
+            {
+                _window = null;
+                _screenDictionary.Clear();
+            }
+            _disposed = true;
+        }
+
+        ~WindowsApp()
+        {
+            Dispose(false);
+        }
+
+        #endregion
     }
 }
