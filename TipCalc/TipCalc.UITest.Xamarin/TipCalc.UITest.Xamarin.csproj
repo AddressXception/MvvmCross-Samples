@@ -59,6 +59,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Emulator.cs" />
+    <Compile Include="Common\EmulatorDevices.cs" />
+    <Compile Include="Common\Execute.cs" />
+    <Compile Include="Common\InstrumentsRunner.cs" />
+    <Compile Include="Common\Simulator.cs" />
+    <Compile Include="Common\SimulatorDevices.cs" />
+    <Compile Include="Common\TextExtensions.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="AppInitializer.cs" />
   </ItemGroup>
@@ -71,6 +78,9 @@
       <Project>{f74fd2de-8b82-435e-9392-0765ae463783}</Project>
       <Name>TipCalc.UITest.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
