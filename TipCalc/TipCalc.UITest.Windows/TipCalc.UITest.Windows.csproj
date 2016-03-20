@@ -76,6 +76,7 @@
     <Compile Include="Common\WindowsAppResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsApp.cs" />
+    <Compile Include="WindowsFeatureBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TipCalc.UITest.Shared\TipCalc.UITest.Shared.csproj">
