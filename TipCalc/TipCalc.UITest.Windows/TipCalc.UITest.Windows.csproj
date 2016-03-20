@@ -61,8 +61,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppInitializer.cs" />
     <Compile Include="CodedUITest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowsApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TipCalc.UITest.Shared\TipCalc.UITest.Shared.csproj">
