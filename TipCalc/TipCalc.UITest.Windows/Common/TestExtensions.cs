@@ -6,12 +6,32 @@ using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Microsoft.VisualStudio.TestTools.UITest.Input;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.WindowsRuntimeControls;
+using TipCalc.UITest.Shared.Common;
 using Xamarin.UITest.Queries;
 
 namespace TipCalc.UITest.Windows.Common
 {
     public static class TestExtensions
     {
+        public static WindowsApp GetAppxPackage(this WindowsApp self, string appId)
+        {
+            var installedApp = InstrumentsRunner.GetAppxPackage();
+            if (string.IsNullOrEmpty(installedApp) || !installedApp.Contains(Constants.WIN_APPID))
+            {
+                Console.WriteLine(
+                    "The AppId specified in Constants does not match the installed app value. " +
+                    "Trying to launch app specified in constants");
+                self.AppId = appId;
+            }
+            else
+            {
+                self.AppId = installedApp;
+            }
+
+            Console.WriteLine("Launching App " + self.AppId);
+            return self;
+        }
+
         public static WindowsApp InitializePlayback(this WindowsApp self)
         {
             try

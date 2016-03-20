@@ -20,5 +20,7 @@ namespace TipCalc.UITest.Shared.Common
         public const string WIN_APPID = "b47d129b-b06b-47c6-b3ff-199f62cb3f12";
 
         public const string WINDOWS_EMULATOR = "C:\\\"Program Files (x86)\"\\\"Microsoft XDE\"\\10.0.1.0";
+        public const string APPXFAMILY_PATH = @"..\..\..\Installed-AppxFamilyName.txt";
+
     }
 }
