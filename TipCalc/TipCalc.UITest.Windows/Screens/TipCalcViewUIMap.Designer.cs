@@ -60,22 +60,6 @@ namespace TipCalc.UITest.Windows.Screens.TipCalcViewUIMapClasses
         }
         
         #region Properties
-        public XamlText UIItem10Text
-        {
-            get
-            {
-                if ((this.mUIItem10Text == null))
-                {
-                    this.mUIItem10Text = new XamlText(this);
-                    #region Search Criteria
-                    this.mUIItem10Text.SearchProperties[XamlText.PropertyNames.AutomationId] = "TipAmount_TextBox";
-                    this.mUIItem10Text.WindowTitles.Add("TipCalc.UI.UWP");
-                    #endregion
-                }
-                return this.mUIItem10Text;
-            }
-        }
-        
         public XamlEdit UISubTotal_TextBoxEdit
         {
             get
@@ -91,12 +75,28 @@ namespace TipCalc.UITest.Windows.Screens.TipCalcViewUIMapClasses
                 return this.mUISubTotal_TextBoxEdit;
             }
         }
+        
+        public XamlText UIItem0Text
+        {
+            get
+            {
+                if ((this.mUIItem0Text == null))
+                {
+                    this.mUIItem0Text = new XamlText(this);
+                    #region Search Criteria
+                    this.mUIItem0Text.SearchProperties[XamlText.PropertyNames.AutomationId] = "TipAmount_TextBox";
+                    this.mUIItem0Text.WindowTitles.Add("TipCalc.UI.UWP");
+                    #endregion
+                }
+                return this.mUIItem0Text;
+            }
+        }
         #endregion
         
         #region Fields
-        private XamlText mUIItem10Text;
-        
         private XamlEdit mUISubTotal_TextBoxEdit;
+        
+        private XamlText mUIItem0Text;
         #endregion
     }
 }

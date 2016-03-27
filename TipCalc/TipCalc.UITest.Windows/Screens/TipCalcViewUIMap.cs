@@ -16,5 +16,6 @@ namespace TipCalc.UITest.Windows.Screens.TipCalcViewUIMapClasses
     
     public partial class TipCalcViewUIMap : UIMapBase
     {
+        public override string XamlRoot => nameof(this.UITipCalcUIUWPWindow);
     }
 }

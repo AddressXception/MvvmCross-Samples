@@ -47,9 +47,9 @@ namespace TipCalc.UITest.Windows.Common
             return self;
         }
 
-        public static XamlWindow XamlWindow(this UIMapBase self, string xamlRoot)
+        public static XamlWindow XamlWindow(this UIMapBase self)
         {
-            var propertyInfo = self.GetType().GetProperty(xamlRoot);
+            var propertyInfo = self.GetType().GetProperty(self.XamlRoot);
             var windowInstance = propertyInfo?.GetValue(self);
             return windowInstance as XamlWindow;
         }
@@ -96,7 +96,7 @@ namespace TipCalc.UITest.Windows.Common
             }
         }
 
-        public static UITestControl FindControl(this Dictionary<Type, UIMapBase> dictionary, string xamlRoot, Func<string> function)
+        public static UITestControl FindControl(this Dictionary<Type, UIMapBase> dictionary, Func<string> function)
         {
             UITestControl control = null;
             string target = function.Invoke();
@@ -105,7 +105,7 @@ namespace TipCalc.UITest.Windows.Common
             activeScreens.ForEach(screen =>
             {
                 if (control == null)
-                    control = screen.Value.XamlWindow(xamlRoot).FindControl(target);
+                    control = screen.Value.XamlWindow().FindControl(target);
             });
 
             return control;

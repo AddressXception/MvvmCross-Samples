@@ -66,8 +66,13 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TipCalc.UITest.Shared\Screens\TipCalcScreen.Windows.feature.cs">
+      <Link>Screens\TipCalcScreen.Windows.feature.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipCalcScreen.Windows.feature</DependentUpon>
+    </Compile>
     <Compile Include="AppInitializer.cs" />
-    <Compile Include="CodedUITest1.cs" />
     <Compile Include="Common\Emulator.cs" />
     <Compile Include="Common\EmulatorDevices.cs" />
     <Compile Include="Common\InstrumentsRunner.cs" />
@@ -76,6 +81,7 @@
     <Compile Include="Common\WindowsAppResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\TipCalcScreen.cs" />
+    <Compile Include="Screens\TipCalcScreenFeature.cs" />
     <Compile Include="Screens\TipCalcViewUIMap.cs">
       <DependentUpon>TipCalcViewUIMap.uitest</DependentUpon>
     </Compile>
@@ -92,6 +98,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\TipCalc.UITest.Shared\Screens\TipCalcScreen.Windows.feature">
+      <Link>Screens\TipCalcScreen.Windows.feature</Link>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TipCalcScreen.Windows.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Screens\TipCalcViewUIMap.uitest" />

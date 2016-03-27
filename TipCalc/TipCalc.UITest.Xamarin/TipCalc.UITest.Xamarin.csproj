@@ -59,6 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TipCalc.UITest.Shared\Screens\TipCalcScreen.Xamarin.feature.cs">
+      <Link>Screens\TipCalcScreen.Xamarin.feature.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipCalcScreen.Xamarin.feature</DependentUpon>
+    </Compile>
     <Compile Include="Common\Emulator.cs" />
     <Compile Include="Common\EmulatorDevices.cs" />
     <Compile Include="Common\Execute.cs" />
@@ -67,11 +73,16 @@
     <Compile Include="Common\SimulatorDevices.cs" />
     <Compile Include="Common\TextExtensions.cs" />
     <Compile Include="Screens\TipCalcScreen.cs" />
-    <Compile Include="Tests.cs" />
+    <Compile Include="Screens\TipCalcScreenFeature.cs" />
     <Compile Include="AppInitializer.cs" />
     <Compile Include="XamarinFeatureBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\TipCalc.UITest.Shared\Screens\TipCalcScreen.Xamarin.feature">
+      <Link>Screens\TipCalcScreen.Xamarin.feature</Link>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TipCalcScreen.Xamarin.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

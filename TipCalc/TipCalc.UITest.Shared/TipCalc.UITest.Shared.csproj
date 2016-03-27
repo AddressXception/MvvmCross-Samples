@@ -53,14 +53,22 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\IScreen.cs" />
     <Compile Include="Common\ScreenNames.cs" />
+    <Compile Include="Common\StepsBase.cs" />
     <Compile Include="FeatureBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\ITipCalcScreen.cs" />
+    <Compile Include="Screens\TipCalcScreenSteps.cs" />
     <Compile Include="StepsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Screens\TipCalcScreen.Xamarin.feature">
+      <LastGenOutput>TipCalcScreen.Xamarin.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Screens\TipCalcScreen.Windows.feature">
+      <LastGenOutput>TipCalcScreen.Windows1.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

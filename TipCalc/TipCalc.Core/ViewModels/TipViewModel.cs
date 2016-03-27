@@ -16,7 +16,7 @@ namespace TipCalc.Core.ViewModels
 
         public override void Start()
         {
-            _subTotal = 100;
+            _subTotal = 0;
             _generosity = 10;
             Recalcuate();
             base.Start();

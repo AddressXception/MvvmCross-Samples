@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Microsoft.VisualStudio.TestTools.UITest.Input;
@@ -54,7 +55,9 @@ namespace TipCalc.UITest.Windows
 
         public void Close()
         {
-            Keyboard.SendKeys(_window, "{F4}", ModifierKeys.Alt);
+            var control = _screenDictionary
+                    .FindControl(() => _screenDictionary[typeof(TipCalcViewUIMap)].XamlRoot);
+            Keyboard.SendKeys(control, "{F4}", ModifierKeys.Alt);
             Dispose();
         }
 
@@ -68,7 +71,7 @@ namespace TipCalc.UITest.Windows
             try
             {
                 var control = _screenDictionary
-                    .FindControl(_window.AutomationId, () => marked);
+                    .FindControl(() => marked);
                 return new AppResult[]
                 {
                     new WindowsAppResult(control)
@@ -119,7 +122,7 @@ namespace TipCalc.UITest.Windows
         public void EnterText(string marked, string text)
         {
             var control = _screenDictionary
-                .FindControl(_window.FriendlyName, () => marked);
+                .FindControl(() => marked);
             Keyboard.SendKeys(control, text);
         }
 
@@ -160,7 +163,8 @@ namespace TipCalc.UITest.Windows
 
         public void Tap(string marked)
         {
-            throw new NotImplementedException();
+            var control = _screenDictionary.FindControl(() => marked);
+            Gesture.Tap(control);
         }
 
         public void Tap(Func<AppQuery, AppWebQuery> query)
@@ -180,12 +184,13 @@ namespace TipCalc.UITest.Windows
 
         public void TouchAndHold(string marked)
         {
-            throw new NotImplementedException();
+            var control = _screenDictionary.FindControl(() => marked);
+            Gesture.PressAndHold(control);
         }
 
         public void TouchAndHoldCoordinates(float x, float y)
         {
-            throw new NotImplementedException();
+            Gesture.PressAndHold(new Point((int)x, (int)y));
         }
 
         public void DoubleTap(Func<AppQuery, AppQuery> query)
@@ -195,12 +200,13 @@ namespace TipCalc.UITest.Windows
 
         public void DoubleTap(string marked)
         {
-            throw new NotImplementedException();
+            var control = _screenDictionary.FindControl(() => marked);
+            Gesture.DoubleTap(control);
         }
 
         public void DoubleTapCoordinates(float x, float y)
         {
-            throw new NotImplementedException();
+            Gesture.DoubleTap(new Point((int)x, (int)y));
         }
 
         public void PinchToZoomIn(Func<AppQuery, AppQuery> query, TimeSpan? duration = null)
@@ -248,7 +254,21 @@ namespace TipCalc.UITest.Windows
         public AppResult[] WaitForElement(string marked, string timeoutMessage = "Timed out waiting for element...",
             TimeSpan? timeout = null, TimeSpan? retryFrequency = null, TimeSpan? postTimeout = null)
         {
-            throw new NotImplementedException();
+            var query = Query(marked);
+
+            if (query == null)
+            {
+                if (timeout == null)
+                    timeout = TimeSpan.FromSeconds(2);
+
+                Thread.Sleep(timeout.Value);
+                query = Query(marked);
+            }
+
+            if (query != null)
+                return Query(marked);
+
+            throw new TimeoutException(timeoutMessage);
         }
 
         public AppWebResult[] WaitForElement(Func<AppQuery, AppWebQuery> query, string timeoutMessage = "Timed out waiting for element...",
@@ -282,7 +302,10 @@ namespace TipCalc.UITest.Windows
 
         public void SwipeRight()
         {
-            throw new NotImplementedException();
+            var startPosition = new Point(_windowBounds.Left + 10, _windowBounds.Height / 2);
+            var endPosition = new Point(_windowBounds.Right - 10, _windowBounds.Height / 2);
+
+            Gesture.Slide(startPosition, endPosition, durationInMilliseconds: 500);
         }
 
         public void SwipeLeftToRight(double swipePercentage = 0.67, int swipeSpeed = 500, bool withInertia = true)
@@ -297,7 +320,10 @@ namespace TipCalc.UITest.Windows
 
         public void SwipeLeft()
         {
-            throw new NotImplementedException();
+            var startPosition = new Point(_windowBounds.Right - 10, _windowBounds.Height / 2);
+            var endPosition = new Point(_windowBounds.Left + 10, _windowBounds.Height / 2);
+
+            Gesture.Slide(startPosition, endPosition, durationInMilliseconds: 500);
         }
 
         public void SwipeRightToLeft(double swipePercentage = 0.67, int swipeSpeed = 500, bool withInertia = true)
@@ -329,19 +355,70 @@ namespace TipCalc.UITest.Windows
         public void ScrollUp(string withinMarked, ScrollStrategy strategy = ScrollStrategy.Auto, double swipePercentage = 0.67, int swipeSpeed = 500,
             bool withInertia = true)
         {
-            throw new NotImplementedException();
+            var control = _screenDictionary.FindControl(() => withinMarked);
+            ScrollUp(control, strategy);
         }
 
         public void ScrollDown(Func<AppQuery, AppQuery> withinQuery = null, ScrollStrategy strategy = ScrollStrategy.Auto, double swipePercentage = 0.67,
             int swipeSpeed = 500, bool withInertia = true)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (withinQuery == null)
+                    ScrollDown(_window, strategy);
+            }
+            catch (FailedToPerformActionOnBlockedControlException ex)
+            {
+
+                Console.WriteLine(
+                    "the Window was blocked while executing the scroll.  " +
+                    "Trying to continue without scrolling. Exception:" + ex);
+            }
         }
 
         public void ScrollDown(string withinMarked, ScrollStrategy strategy = ScrollStrategy.Auto, double swipePercentage = 0.67, int swipeSpeed = 500,
             bool withInertia = true)
         {
-            throw new NotImplementedException();
+            var control = _screenDictionary.FindControl(() => withinMarked);
+            ScrollDown(control, strategy);
+        }
+
+        private void ScrollUp(UITestControl winthinControl, ScrollStrategy strategy = ScrollStrategy.Auto)
+        {
+            var relativeStartPoint = new Point(winthinControl.BoundingRectangle.Width - 100, winthinControl.BoundingRectangle.Height / 2);
+
+            switch (strategy)
+            {
+                case ScrollStrategy.Gesture:
+                    //A slow Flick
+                    Gesture.Flick(winthinControl, relativeStartPoint, (uint)winthinControl.BoundingRectangle.Width / 2, UITestGestureDirection.Down, 2);
+                    break;
+                case ScrollStrategy.Auto:
+                case ScrollStrategy.Programmatically:
+                default:
+                    //A fast flick
+                    Gesture.Flick(winthinControl, relativeStartPoint, (uint)winthinControl.BoundingRectangle.Width / 2, UITestGestureDirection.Down, 15);
+                    break;
+            }
+        }
+
+        private void ScrollDown(UITestControl withinControl, ScrollStrategy strategy = ScrollStrategy.Auto)
+        {
+            var relativeStartPoint = new Point(withinControl.BoundingRectangle.Width - 100, withinControl.BoundingRectangle.Height / 2);
+
+            switch (strategy)
+            {
+                case ScrollStrategy.Gesture:
+                    //A slow Flick
+                    Gesture.Flick(withinControl, relativeStartPoint, (uint)withinControl.BoundingRectangle.Width / 2, UITestGestureDirection.Up, 2);
+                    break;
+                case ScrollStrategy.Auto:
+                case ScrollStrategy.Programmatically:
+                default:
+                    //A fast flick
+                    Gesture.Flick(withinControl, relativeStartPoint, (uint)withinControl.BoundingRectangle.Width / 2, UITestGestureDirection.Up, 15);
+                    break;
+            }
         }
 
         public void ScrollTo(string toMarked, string withinMarked = null, ScrollStrategy strategy = ScrollStrategy.Auto, double swipePercentage = 0.67,
