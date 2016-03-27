@@ -4,6 +4,9 @@ namespace TipCalc.UITest.Shared.Common
 {
     public static class Constants
     {
+        //You can use this on the command line to run the tests manually
+        //mono ~/{PROJECT_PATH}/packages/NUnit-Bin/bin/nunit-console.exe ~/PROJECT_PATH/TipCalc.UITest.Xamarin/bin/Debug/TipCalc.UITest.Xamarin.dll
+
         private const string _adb = "/Library/Developer/Xamarin/android-sdk-macosx/platform-tools/adb";
         public static string ANDROID_ADB => Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + _adb;
 
@@ -11,8 +14,10 @@ namespace TipCalc.UITest.Shared.Common
         public const string APK_PATH = "../../../TipCalc.UI.Droid/bin/Debug/" + APK_PACKAGENAME + ".apk";
 
         public const string ANDROID_EMULATOR = "/Applications/Genymotion.app/Contents/MacOS/player";
+        public const string GENYMOTION_PLAYER = "/Applications/Genymotion.app/Contents/MacOS/player";
         public const string GENYMOTION_SHELL = "/Applications/Genymotion Shell.app/Contents/MacOS/genyshell.command";
         public const string VBOXMANAGE = "/Applications/VirtualBox.app/Contents/MacOS/VBoxManage-x86";
+        public const string ADB_RECORD_FILE = "/sdcard/UITestRecording.mp4";
 
         public const string IPA_PACKAGENAME = "com.mvvmcross.tipcalc-ui-ios";
         public const string IPA_PATH = "../../../TipCalc.UI.iOS/bin/iPhoneSimulator/Debug/" + IPA_PACKAGENAME + ".app";

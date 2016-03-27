@@ -69,6 +69,7 @@
     <Compile Include="Screens\TipCalcScreen.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="AppInitializer.cs" />
+    <Compile Include="XamarinFeatureBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
