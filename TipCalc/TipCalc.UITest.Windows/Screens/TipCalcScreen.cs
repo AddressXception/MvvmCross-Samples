@@ -6,5 +6,6 @@ namespace TipCalc.UITest.Windows.Screens
     {
         public string FriendlyName => "Tip";
         public string SubTotalEntry => "SubTotal_TextBox";
+        public string TipAmount => "TipAmount_TextBox";
     }
 }

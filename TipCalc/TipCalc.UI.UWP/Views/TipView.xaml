@@ -19,7 +19,7 @@
                 Minimum="0" 
                 Maximum="100" />
             <TextBlock Text="Tip" />
-            <TextBlock Text="{Binding Tip}" />
+            <TextBlock x:Name="TipAmount_TextBox" Text="{Binding Tip}" />
         </StackPanel>
     </Grid>
 </views:MvxWindowsPage>

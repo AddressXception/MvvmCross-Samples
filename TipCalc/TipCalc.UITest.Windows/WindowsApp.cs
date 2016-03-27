@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UITest.Input;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.WindowsRuntimeControls;
 using TipCalc.UITest.Windows.Common;
+using TipCalc.UITest.Windows.Screens.TipCalcViewUIMapClasses;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
@@ -26,6 +27,14 @@ namespace TipCalc.UITest.Windows
         private readonly Dictionary<Type, UIMapBase> _screenDictionary;
 
         public string AppId { get; set; }
+
+        public WindowsApp()
+        {
+            _screenDictionary = new Dictionary<Type, UIMapBase>()
+            {
+                { typeof(TipCalcViewUIMap), new TipCalcViewUIMap() },
+            };
+        }
 
         internal IApp StartApp()
         {
@@ -59,7 +68,7 @@ namespace TipCalc.UITest.Windows
             try
             {
                 var control = _screenDictionary
-                    .FindControl(_window.FriendlyName, () => marked);
+                    .FindControl(_window.AutomationId, () => marked);
                 return new AppResult[]
                 {
                     new WindowsAppResult(control)
