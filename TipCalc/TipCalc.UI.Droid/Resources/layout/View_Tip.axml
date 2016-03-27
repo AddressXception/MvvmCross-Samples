@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:textSize="24dp"
         android:text="SubTotal" />
-    <EditText
+  <EditText
+        android:id="@+id/subTotal_EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
@@ -39,7 +40,8 @@
         android:layout_height="wrap_content"
         android:textSize="24dp"
         android:text="Tip to leave" />
-    <TextView
+  <TextView
+        android:id="@+id/tipAmount_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"

@@ -66,6 +66,7 @@
     <Compile Include="Common\Simulator.cs" />
     <Compile Include="Common\SimulatorDevices.cs" />
     <Compile Include="Common\TextExtensions.cs" />
+    <Compile Include="Screens\TipCalcScreen.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="AppInitializer.cs" />
   </ItemGroup>
