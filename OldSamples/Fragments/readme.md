@@ -1,3 +1,0 @@
-# MvvmCross v3 Fragment Sample
-
-Work in progress...
