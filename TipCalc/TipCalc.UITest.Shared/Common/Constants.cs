@@ -22,7 +22,8 @@ namespace TipCalc.UITest.Shared.Common
         public const string IPA_PACKAGENAME = "com.mvvmcross.tipcalc-ui-ios";
         public const string IPA_PATH = "../../../TipCalc.UI.iOS/bin/iPhoneSimulator/Debug/" + IPA_PACKAGENAME + ".app";
 
-        public const string WIN_APPID = "b47d129b-b06b-47c6-b3ff-199f62cb3f12";
+        //you have to update this value with the value from your local system or you will get initialization/playback errors.
+        public const string WIN_APPID = "b47d129b-b06b-47c6-b3ff-199f62cb3f12_scyf5npe3hv32!App";
 
         public const string WINDOWS_EMULATOR = "C:\\\"Program Files (x86)\"\\\"Microsoft XDE\"\\10.0.1.0";
         public const string APPXFAMILY_PATH = @"..\..\..\Installed-AppxFamilyName.txt";

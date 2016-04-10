@@ -25,6 +25,7 @@ namespace TipCalc.UITest.Shared.Screens
         [When(@"I enter (.*) into the SubTotal field")]
         public void WhenIEnterIntoTheSubTotalField(int p0)
         {
+            App.EnterText(_tipCalcScreen.SubTotalEntry, p0.ToString());
         }
         
         [Then(@"the Tip Amount should be (.*) on the screen")]

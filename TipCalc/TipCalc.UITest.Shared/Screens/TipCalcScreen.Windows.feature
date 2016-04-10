@@ -7,3 +7,4 @@
 Scenario: TipCalc Change SubTotal
 	Given I have selected the SubTotal field
 	When I enter 50 into the SubTotal field
+	Then the Tip Amount should be 5 on the screen
